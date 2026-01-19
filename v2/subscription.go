@@ -5,57 +5,57 @@ import "time"
 // https://docs.abacatepay.com/pages/subscriptions/reference#estrutura
 type APISubscription struct {
 	// The ID of the subscription.
-	ID string
+	ID string `json:"id"`
 
 	// The subscription value in cents.
-	Amount uint64
+	Amount uint64 `json:"amount"`
 
 	// Subscription currency.
-	Currency string
+	Currency string `json:"currency"`
 
 	// Subscription name.
-	Name string
+	Name string `json:"name"`
 
 	// Subscription description.
-	Description string
+	Description string `json:"description"`
 
 	// Unique identifier of the subscription on your system.
-	ExternalID string
+	ExternalID string `json:"externalId"`
 
 	// Indicates whether the signature was created in a testing environment.
-	DevMode bool
+	DevMode bool `json:"devMode"`
 
 	// Subscription creation date.
-	CreatedAt time.Time
+	CreatedAt time.Time `json:"createdAt"`
 
 	// Subscription update date.
-	UpdatedAt time.Time
+	UpdatedAt time.Time `json:"updatedAt"`
 
 	// Payment method for the subscription.
-	Method PaymentMethod
+	Method PaymentMethod `json:"method"`
 
 	// Status of the subscription.
-	Status SubscriptionStatus
+	Status SubscriptionStatus `json:"status"`
 
 	// Billing frequency configuration.
-	Frequency APISubscriptionFrequency
+	Frequency APISubscriptionFrequency `json:"frequency"`
 
 	// Identifier of the customer who will have the signature.
-	CustomerID string
+	CustomerID string `json:"customerId"`
 
 	// Retry policy in case of payment failure.
-	RetryPolicy APISubscriptionRetryPolicy
+	RetryPolicy APISubscriptionRetryPolicy `json:"retryPolicy"`
 
 	// Array of events related to the subscription.
-	Events []APISubscriptionEvent
+	Events []APISubscriptionEvent `json:"events"`
 }
 
 type APISubscriptionFrequency struct {
 	// Subscription billing cycle.
-	Cycle APISubscriptionFrequencyCycle
+	Cycle APISubscriptionFrequencyCycle `json:"cycle"`
 
 	// Day of the month the charge will be processed (1-31).
-	DayOfProcessing uint8
+	DayOfProcessing uint8 `json:"dayOfProcessing"`
 }
 
 type APISubscriptionFrequencyCycle string
@@ -69,10 +69,10 @@ const (
 
 type APISubscriptionRetryPolicy struct {
 	// Maximum number of billing attempts.
-	MaxRetry uint64
+	MaxRetry uint64 `json:"maxRetry"`
 
 	// Interval in days between charging attempts.
-	RetryEvery uint64
+	RetryEvery uint64 `json:"retryEvery"`
 }
 
 type SubscriptionStatus string
@@ -88,11 +88,11 @@ const (
 // https://docs.abacatepay.com/pages/subscriptions/reference#estrutura
 type APISubscriptionEvent struct {
 	// Event type.
-	Event string
+	Event string `json:"event"`
 
 	// Event description.
-	Description string
+	Description string `json:"description"`
 
 	// Event creation date.
-	CreatedAt time.Time
+	CreatedAt time.Time `json:"createdAt"`
 }
