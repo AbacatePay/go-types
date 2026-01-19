@@ -29,3 +29,17 @@ type APICustomer struct {
 	// Additional customer metadata.
 	Metadata map[string]any `json:"metadata,omitempty"`
 }
+
+type APIBaseCustomer struct {
+	// Customer's full name.
+	Name string `json:"name"`
+
+	// Customer's email.
+	Email string `json:"email"`
+
+	// Customer's CPF or CNPJ.
+	TaxID string `json:"taxId"`
+
+	// Customer's cell phone.
+	Cellphone string `json:"cellphone"`
+}
