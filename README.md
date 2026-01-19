@@ -1,21 +1,25 @@
-<h1 align="center">AbacatePay Go Types</h1>
+<div align="center">
 
-<p align="center">
-Types, structs e helpers oficiais para integração com a API da AbacatePay em Go.
-</p>
+# AbacatePay Go Types
 
-## 📦 Instalação
+Tipagens oficiais e helpers modernos para integrar com a API da AbacatePay.
+
+<img src="https://res.cloudinary.com/dkok1obj5/image/upload/v1767631413/avo_clhmaf.png" width="100%" alt="AbacatePay Open Source"/>
+
+## Instalação
 
 ```bash
 go get github.com/almeidazs/go-abacate-types@latest
 ```
 
-<h2 align="center">Como a AbacatePay API Types documenta</h2>
+## Como a AbacatePay API Types documenta
 
 Antes de tudo, você deve específicar a versão da API que você deseja importar os tipos. Coloque `/v*` no final da importação, sendo `*` a versão que deseja usar:
 
+</div>
+
 ```go
-import "github.com/almeidazs/go-abacate-types/v1"
+import "github.com/almeidazs/go-abacate-types/v2"
 ```
 
 - Prefixo `API*`
@@ -37,16 +41,15 @@ Tipos usados em requisições diretas à API.
   Ex.: `RESTGetListCouponsData`
 
 - O pacote **NÃO adiciona tipos além do que existe na documentação oficial**.
-Cada tipo reflete exatamente o que está documentado aqui:
-https://docs.abacatepay.com/pages/introduction
+Cada tipo reflete exatamente o que está documentado aqui: https://docs.abacatepay.com/pages/introduction
 
-- Campos marcados com `@unstable`
-São campos que não têm definição formal na documentação, mas cujo tipo foi inferido com base nos exemplos oficiais.
-(Ex.: `WebhookWithdrawDoneEvent.billing.kind`)
+<div align="center">
 
-<h2 align="center">Quickstart</h2>
+## Quickstart
 
-<p align="center"><strong>Crie um novo cupom</strong></p>
+**Crie um novo cupom**
+
+</div>
 
 ```go
 package main
@@ -56,16 +59,17 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/almeidazs/go-abacate-types/v1"
+	types "github.com/almeidazs/go-abacate-types/v2"
 )
 
-func CreateCoupon(body v1.RESTPostCreateCouponBody) (*v1.APICoupon, error) {
-	url := v1.APIBaseURL + v1.RouteCreateCoupon
+func CreateCoupon(body types.RESTPostCreateCouponBody) (*types.APICoupon, error) {
+	url := types.APIBaseURL + types.RouteCreateCoupon
 
 	payload, _ := json.Marshal(body)
 
 	req, _ := http.NewRequest(http.MethodPost, url, bytes.NewBuffer(payload))
 
+	req.Header.Set("Authorization", "...")
 	req.Header.Set("Content-Type", "application/json")
 
 	resp, err := http.DefaultClient.Do(req)
@@ -86,7 +90,10 @@ func CreateCoupon(body v1.RESTPostCreateCouponBody) (*v1.APICoupon, error) {
 }
 ```
 
-<p align="center"><strong>Receber Webhooks da AbacatePay</strong></p>
+<div align="center">
+
+**Escute eventos de Webhooks da AbacatePay**
+</div>
 
 ```go
 package main
@@ -95,11 +102,11 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/almeidazs/go-abacate-types/v1"
+	types "github.com/almeidazs/go-abacate-types/v2"
 )
 
 func webhookHandler(w http.ResponseWriter, r *http.Request) {
-	var event v1.WebhookEvent
+	var event types.WebhookEvent
 
 	if err := json.NewDecoder(r.Body).Decode(&event); err != nil {
 		w.WriteHeader(http.StatusBadRequest)
@@ -108,14 +115,17 @@ func webhookHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	switch event.Event {
-	case v1.WebhookEventBillingPaid:
+	case types.WebhookEventBillingPaid:
 		// Pagamento confirmado
-	case v1.WebhookEventWithdrawDone:
+	case types.WebhookEventPayoutDone:
 		// Saque concluído
-	case v1.WebhookEventWithdrawFailed:
+	case types.WebhookEventPayoutFailed:
 		// Saque falhou
 	}
 
 	w.WriteHeader(http.StatusOK)
 }
 ```
+
+<p align="center">Feito com 🥑 pela equipe AbacatePay
+</br>Open source, de verdade.</p>
