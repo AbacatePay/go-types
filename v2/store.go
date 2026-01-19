@@ -16,12 +16,12 @@ type APIStore struct {
 // ps://docs.abacatepay.com/pages/store/reference#estrutura
 type APIStoreBalance struct {
 	// Balance available for withdrawal in cents.
-	Available uint16 `json:"available"`
+	Available uint64 `json:"available"`
 
 	// Balance pending confirmation in cents.
-	Pending uint16 `json:"pending"`
+	Pending uint64 `json:"pending"`
 
 	// Balance blocked in disputes in cents.
 	// The blocked balance represents amounts that are in dispute or under review. These amounts are not available for withdrawal until the situation is resolved.
-	Blocked uint16 `json:"blocked"`
+	Blocked uint64 `json:"blocked"`
 }
