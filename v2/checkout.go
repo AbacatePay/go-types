@@ -8,7 +8,7 @@ type APICheckout struct {
 	ID string
 
 	// Total amount to be paid in cents.
-	Amount	uint64
+	Amount uint64
 
 	// Amount already paid in cents.
 	PaidAmount *uint64
@@ -17,7 +17,7 @@ type APICheckout struct {
 	ExternalID *string
 
 	// URL where the user can complete the payment.
-	URL	string
+	URL string
 
 	// List of items in billing.
 	Items []APIItem
@@ -47,18 +47,18 @@ type APICheckout struct {
 	CustomerID *string
 
 	// Charge creation date and time.
-	CreatedAt	time.Time
+	CreatedAt time.Time
 
 	// Charge last updated date and time.
-	UpdatedAt	time.Time
+	UpdatedAt time.Time
 }
 
 type APIItem struct {
 	// Product ID.
-	ID	string
+	ID string
 
 	// Item quantity.
-	Quantity	uint64
+	Quantity uint64
 }
 
 // https://docs.abacatepay.com/pages/checkouts/reference#atributos
@@ -66,11 +66,11 @@ type PaymentStatus string
 
 // https://docs.abacatepay.com/pages/checkouts/reference#atributos
 const (
-	PaymentStatusPending PaymentStatus = "PENDING"
-	PaymentStatusExpired PaymentStatus = "EXPIRED"
+	PaymentStatusPending   PaymentStatus = "PENDING"
+	PaymentStatusExpired   PaymentStatus = "EXPIRED"
 	PaymentStatusCancelled PaymentStatus = "CANCELLED"
-	PaymentStatusPaid PaymentStatus = "PAID"
-	PaymentStatusRefunded PaymentStatus = "REFUNDED"
+	PaymentStatusPaid      PaymentStatus = "PAID"
+	PaymentStatusRefunded  PaymentStatus = "REFUNDED"
 )
 
 // https://docs.abacatepay.com/pages/checkouts/create#body-methods
@@ -78,6 +78,6 @@ type PaymentMethod string
 
 // https://docs.abacatepay.com/pages/checkouts/create#body-methods
 const (
-	PaymentMethodPix PaymentMethod = "PIX"
+	PaymentMethodPix  PaymentMethod = "PIX"
 	PaymentMethodCard PaymentMethod = "CARD"
 )
