@@ -62,7 +62,7 @@ import (
 	types "github.com/AbacatePay/go-types/v2"
 )
 
-func CreateCoupon(body types.RESTPostCreateCouponBody) (*types.APICoupon, error) {
+func CreateCoupon(body types.RESTPostCreateCouponBody) (*types.RESTPostCreateCouponData, error) {
 	url := types.APIBaseURL + types.RouteCreateCoupon
 
 	payload, _ := json.Marshal(body)
@@ -80,13 +80,13 @@ func CreateCoupon(body types.RESTPostCreateCouponBody) (*types.APICoupon, error)
 
 	defer resp.Body.Close()
 
-	var result v1.RESTPostCreateCouponData
+	var data types.RESTPostCreateCouponData
 
-	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
+	if err := json.NewDecoder(resp.Body).Decode(&data); err != nil {
 		return nil, err
 	}
 
-	return result.Data, nil
+	return data, nil
 }
 ```
 
