@@ -9,6 +9,9 @@ type APIResponse[Payload any] struct {
 
 	// Error message returned from the API.
 	Error *string `json:"error,omitempty"`
+
+	// Whether the request was successfull or not.
+	Success bool `json:"success"`
 }
 
 // Any response returned by the AbacatePay API that has a `pagination` field (Not cursor based).
@@ -21,6 +24,9 @@ type APIResponseWithPagination[Payload any] struct {
 
 	// Pagination info.
 	Pagination APIResponseWithPaginationData `json:"pagination"`
+
+	// Whether the request was successfull or not.
+	Success bool `json:"success"`
 }
 
 type APIResponseWithPaginationData struct {
@@ -47,6 +53,9 @@ type APIResponseWithCursorBasedPagination[Payload any] struct {
 
 	// Pagination info.
 	Pagination APIResponseWithCursorBasedPaginationData `json:"pagination"`
+
+	// Whether the request was successfull or not.
+	Success bool `json:"success"`
 }
 
 type APIResponseWithCursorBasedPaginationData struct {
