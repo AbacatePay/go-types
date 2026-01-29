@@ -171,6 +171,7 @@ const (
 	RouteCreateProduct = "/products/create"
 	RouteListProducts  = "/products/list"
 	RouteGetProduct    = "/products/get"
+	RouteDeleteProduct = "/products/delete"
 )
 
 func BuildGetProductURL(id, externalID *string) string {
