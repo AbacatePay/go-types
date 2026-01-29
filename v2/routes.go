@@ -47,10 +47,6 @@ func BuildGetCustomerURL(id string) string {
 	return withQuery(RouteGetCustomer, q)
 }
 
-/* =======================
-   Checkouts
-======================= */
-
 const (
 	RouteCreateCheckout = "/checkouts/create"
 	RouteListCheckouts  = "/checkouts/list"
@@ -62,10 +58,6 @@ func BuildGetCheckoutURL(id string) string {
 	q.Set("id", id)
 	return withQuery(RouteGetCheckout, q)
 }
-
-/* =======================
-   PIX / Transparents
-======================= */
 
 const (
 	RouteCreatePixQRCode = "/transparents/create"
