@@ -72,6 +72,14 @@ type APIResponseWithCursorBasedPaginationData struct {
 	NextCursor *string `json:"nextCursor,omitempty"`
 }
 
+// https://api.abacate.com/v2/products/delete
+type DeleteProductData APIResponse[APIProduct]
+
+// https://api.abacate.com/v2/products/delete
+type DeleteProductBody struct {
+	ID string `json:"id"`
+}
+
 // https://api.abacatepay.com/v2/customers/create
 type RESTPostCreateCustomerBody struct {
 	// Customer's full name.
